@@ -187,4 +187,6 @@
   // Add code to check if the user has any subscribed cities, and render
   // those or the default data here.
 
+  app.updateForecastCard(fakeForecast);
+
 })();
