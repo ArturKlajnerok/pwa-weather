@@ -184,7 +184,7 @@
 
   // Add code to save the users list of subscribed cities here
 
-  // Add code to check if the user has any subscribed cities, and render 
+  // Add code to check if the user has any subscribed cities, and render
   // those or the default data here.
 
 })();
