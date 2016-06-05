@@ -78,7 +78,8 @@ body {
   -webkit-transition: -webkit-transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s;
   transition: -webkit-transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s;
   transition: transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s;
-  transition: transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s, -webkit-transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s; }
+  transition: transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s, -webkit-transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s;
+  z-index: 1000; }
   .header .headerButton {
     width: 24px;
     height: 24px;
@@ -89,11 +90,12 @@ body {
     -webkit-transition: opacity 0.333s cubic-bezier(0, 0, 0.21, 1);
     transition: opacity 0.333s cubic-bezier(0, 0, 0.21, 1);
     border: none;
-    outline: none; }
+    outline: none;
+    cursor: pointer; }
   .header #butRefresh {
-    background: url(../images/ic_refresh_white_24px.svg) center center no-repeat; }
+    background: url(/images/ic_refresh_white_24px.svg) center center no-repeat; }
   .header #butAdd {
-    background: url(../images/ic_add_white_24px.svg) center center no-repeat; }
+    background: url(/images/ic_add_white_24px.svg) center center no-repeat; }
 
 .header__title {
   font-weight: 400;
@@ -203,8 +205,26 @@ body {
   -webkit-transition: -webkit-transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s;
   transition: -webkit-transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s;
   transition: transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s;
-  transition: transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s, -webkit-transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s;
-  padding: 24px; }
+  transition: transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s, -webkit-transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s; }
+
+.dialog > div {
+  padding-left: 24px;
+  padding-right: 24px; }
+
+.dialog-title {
+  padding-top: 20px;
+  font-size: 1.25em; }
+
+.dialog-body {
+  padding-top: 20px;
+  padding-bottom: 24px; }
+  .dialog-body select {
+    width: 100%;
+    font-size: 2em; }
+
+.dialog-buttons {
+  padding: 8px !important;
+  float: right; }
 
 .card {
   padding: 16px;
@@ -287,27 +307,27 @@ body {
   background-repeat: no-repeat;
   background-size: contain; }
   .weather-forecast .icon.clear-day {
-    background-image: url("../images/clear.png"); }
+    background-image: url("/images/clear.png"); }
   .weather-forecast .icon.clear-night {
-    background-image: url("../images/clear.png"); }
+    background-image: url("/images/clear.png"); }
   .weather-forecast .icon.rain {
-    background-image: url("../images/rain.png"); }
+    background-image: url("/images/rain.png"); }
   .weather-forecast .icon.snow {
-    background-image: url("../images/snow.png"); }
+    background-image: url("/images/snow.png"); }
   .weather-forecast .icon.sleet {
-    background-image: url("../images/sleet.png"); }
+    background-image: url("/images/sleet.png"); }
   .weather-forecast .icon.wind {
-    background-image: url("../images/wind.png"); }
+    background-image: url("/images/wind.png"); }
   .weather-forecast .icon.fog {
-    background-image: url("../images/fog.png"); }
+    background-image: url("/images/fog.png"); }
   .weather-forecast .icon.cloudy {
-    background-image: url("../images/cloudy.png"); }
+    background-image: url("/images/cloudy.png"); }
   .weather-forecast .icon.partly-cloudy-day {
-    background-image: url("../images/partly-cloudy.png"); }
+    background-image: url("/images/partly-cloudy.png"); }
   .weather-forecast .icon.partly-cloudy-night {
-    background-image: url("../images/partly-cloudy.png"); }
+    background-image: url("/images/partly-cloudy.png"); }
   .weather-forecast .icon.thunderstorms {
-    background-image: url("../images/thunderstorms.png"); }
+    background-image: url("/images/thunderstorms.png"); }
 
 @media (max-width: 450px) {
   .weather-forecast .date, .weather-forecast .description {
@@ -320,3 +340,51 @@ body {
   .weather-forecast .future .oneday .icon {
     width: 32px;
     height: 32px; } }
+
+.mdl-button {
+  background: transparent;
+  border: none;
+  border-radius: 2px;
+  color: black;
+  position: relative;
+  height: 36px;
+  margin: 0;
+  min-width: 64px;
+  padding: 0 16px;
+  display: inline-block;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0;
+  overflow: hidden;
+  will-change: box-shadow;
+  -webkit-transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  line-height: 36px;
+  vertical-align: middle; }
+  .mdl-button::-moz-focus-inner {
+    border: 0; }
+  .mdl-button:hover {
+    background-color: rgba(158, 158, 158, 0.2); }
+  .mdl-button:focus:not(:active) {
+    background-color: rgba(0, 0, 0, 0.12); }
+  .mdl-button:active {
+    background-color: rgba(158, 158, 158, 0.4); }
+  .mdl-button.mdl-button--colored {
+    color: #3f51b5; }
+    .mdl-button.mdl-button--colored:focus:not(:active) {
+      background-color: rgba(0, 0, 0, 0.12); }
+
+.mdl-button--primary.mdl-button--primary {
+  color: #3f51b5; }
+  .mdl-button--primary.mdl-button--primary .mdl-ripple {
+    background: white; }
+  .mdl-button--primary.mdl-button--primary.mdl-button--raised, .mdl-button--primary.mdl-button--primary.mdl-button--fab {
+    color: white;
+    background-color: #3f51b5; }
