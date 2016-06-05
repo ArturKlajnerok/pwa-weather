@@ -32,6 +32,7 @@
 
   var app = {
     isLoading: true,
+    hasRequestPending: false,
     visibleCards: {},
     selectedCities: [],
     spinner: document.querySelector('.loader'),
@@ -153,6 +154,23 @@
   app.getForecast = function(key, label) {
     var url = 'https://publicdata-weather.firebaseio.com/';
     url += key + '.json';
+    if ('caches' in window) {
+      caches.match(url).then(function(response) {
+        if (response) {
+          response.json().then(function(json) {
+            // Only update if the XHR is still pending, otherwise the XHR
+            // has already returned and provided the latest data.
+            if (app.hasRequestPending) {
+              console.log('[App] Forecast Updated From Cache');
+              json.key = key;
+              json.label = label;
+              app.updateForecastCard(json);
+            }
+          });
+        }
+      });
+    }
+    app.hasRequestPending = true;
     // Make the XHR to get the data, then update the card
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
@@ -162,6 +180,7 @@
           response.key = key;
           response.label = label;
           app.hasRequestPending = false;
+          console.log('[App] Forecast Updated From Network');
           app.updateForecastCard(response);
         }
       }
@@ -211,11 +230,11 @@
     app.saveSelectedCities();
   }
 
-    // Add feature check for Service Workers here
-    if('serviceWorker' in navigator) {
-      navigator.serviceWorker
-               .register('/service-worker.js')
-               .then(function() { console.log('Service Worker Registered'); });
-    }
+  // Add feature check for Service Workers here
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('/service-worker.js')
+             .then(function() { console.log('Service Worker Registered'); });
+  }
 
 })();
