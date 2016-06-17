@@ -228,8 +228,16 @@
   }
 
   if('serviceWorker' in navigator) {
+    console.log('Service Worker is supported');
+
     navigator.serviceWorker
              .register('./service-worker.js')
              .then(function() { console.log('Service Worker Registered'); });
+
+    navigator.serviceWorker.register('service-worker-push-notifications.js').then(function(reg) {
+      console.log(':^)', reg);
+    }).catch(function(err) {
+      console.log(':^(', err);
+    });
   }
 })();
