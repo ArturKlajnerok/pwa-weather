@@ -236,6 +236,11 @@
 
     navigator.serviceWorker.register('service-worker-push-notifications.js').then(function(reg) {
       console.log(':^)', reg);
+      reg.pushManager.subscribe({
+            userVisibleOnly: true
+        }).then(function(sub) {
+            console.log('endpoint:', sub.endpoint);
+        });
     }).catch(function(err) {
       console.log(':^(', err);
     });
