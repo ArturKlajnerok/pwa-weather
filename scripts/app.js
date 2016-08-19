@@ -227,6 +227,8 @@
     app.saveSelectedCities();
   }
 
+  var registration;
+
   if('serviceWorker' in navigator) {
     console.log('Service Worker is supported');
 
@@ -234,15 +236,45 @@
              .register('./service-worker.js')
              .then(function() { console.log('Service Worker Registered'); });
 
-    navigator.serviceWorker.register('service-worker-push-notifications.js').then(function(reg) {
-      console.log(':^)', reg);
-      reg.pushManager.subscribe({
-            userVisibleOnly: true
-        }).then(function(sub) {
-            console.log('endpoint:', sub.endpoint);
-        });
-    }).catch(function(err) {
-      console.log(':^(', err);
+    navigator.serviceWorker.register('service-worker-push-notifications.js').then(function() {
+      return navigator.serviceWorker.ready;
+    }).then(function(serviceWorkerRegistration) {
+      registration = serviceWorkerRegistration;
+      console.log('Service Worker is ready :^)', registration);
+    }).catch(function(error) {
+      console.log('Service Worker Error :^(', error);
     });
   }
+
+  var subcription;
+  var isSubscribed = false;
+  var notificationsButton = document.getElementById('butNotifications');
+
+  notificationsButton.addEventListener('click', function() {
+    if (isSubscribed) {
+      unsubscribe();
+    } else {
+      subscribe();
+    }
+  });
+
+  function subscribe() {
+    registration.pushManager.subscribe({
+      userVisibleOnly: true
+    }).then(function(pushSubscription){
+      subcription = pushSubscription;
+      console.log('Subscribed! Endpoint:', subcription.endpoint);
+      isSubscribed = true;
+  });
+}
+
+function unsubscribe() {
+  subcription.unsubscribe().then(function(event) {
+    console.log('Unsubscribed!', event);
+    isSubscribed = false;
+  }).catch(function(error) {
+    console.log('Error unsubscribing', error);
+  });
+}
+
 })();

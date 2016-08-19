@@ -92,6 +92,8 @@ body {
     border: none;
     outline: none;
     cursor: pointer; }
+  .header #butNotifications {
+      background: url(/images/ic_notifications_white_24px.svg) center center no-repeat; }
   .header #butRefresh {
     background: url(/images/ic_refresh_white_24px.svg) center center no-repeat; }
   .header #butAdd {
